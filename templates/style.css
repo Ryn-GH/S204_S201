@@ -125,8 +125,9 @@ body {
 .typing {
     overflow: hidden;
     white-space: nowrap;
-    border-right: .15em solid orange;
-    animation: typing 7s steps(20, end), blink-caret .75s step-end infinite;
+    border-right: 2px solid gray;
+    width: 18.7ch;
+    animation: typing 4s steps(25, end), blink 0.75s step-end infinite;
 }
 
 @keyframes typing {
@@ -135,19 +136,13 @@ body {
     }
 
     to {
-        width: 100%
+        width: 18.7ch
     }
 }
 
-@keyframes blink-caret {
-
-    from,
-    to {
-        border-color: transparent
-    }
-
+@keyframes blink {
     50% {
-        border-color: gray;
+        border-color: transparent;
     }
 }
 
