@@ -151,7 +151,6 @@ body {
     position: relative;
     width: 100%;
     /* Utilise toute la largeur disponible dans son parent */
-    max-width: 700px;
     /* Largeur maximale pour les grands écrans */
     height: 400px;
     /* Hauteur fixe pour le conteneur */
