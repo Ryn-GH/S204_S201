@@ -13,29 +13,39 @@
         /* Styles spécifiques pour l'iframe de la carte */
         .map-container {
             width: 100%;
-            height: 700px; /* Ajustez la hauteur selon vos besoins */
+            height: 700px;
             border: none;
         }
 
         /* Styles pour le corps de la page pour gérer la barre latérale et le contenu principal */
         body {
-            display: flex; /* Utilise flexbox pour aligner la sidebar et le main */
-            min-height: 100vh; /* Assure que le corps prend au moins toute la hauteur de la fenêtre */
+            display: flex;
+            /* Utilise flexbox pour aligner la sidebar et le main */
+            min-height: 100vh;
+            /* Assure que le corps prend au moins toute la hauteur de la fenêtre */
         }
 
         /* La barre latérale est fixe, le contenu principal doit la décaler */
         #sidebar {
-            width: 250px; /* Largeur de votre tableau de bord */
-            /* Tailwind fixed, top-0, left-0, bg-gray-800, text-gray-100, shadow-md sont déjà appliqués */
-            z-index: 10; /* Assurez-vous qu'elle est au-dessus des autres contenus */
+            width: 250px;
+            z-index: 10;
+            /* Assurez-vous qu'elle est au-dessus des autres contenus */
         }
 
         /* Le contenu principal doit être décalé de la largeur de la sidebar */
         #content {
-            margin-left: 250px; /* Doit correspondre à la largeur de la sidebar */
-            flex-grow: 1; /* Permet au contenu de prendre tout l'espace restant */
-            padding: 2.5rem; /* Ajustez le padding si 10 rem est trop grand */
-            /* bg-gray-100 est déjà sur le body, mais vous pouvez le mettre ici si vous voulez un fond différent pour le contenu */
+            margin-left: 250px;
+            /* Doit correspondre à la largeur de la sidebar */
+            flex-grow: 1;
+            /* Permet au contenu de prendre tout l'espace restant */
+            padding: 2.5rem;
+            /* Espace autour du contenu principal */
+        }
+
+        #department-details {
+            max-height: 700px;
+            /* même hauteur que la carte */
+            overflow-y: auto;
         }
 
         /* Styles pour la transition de page */
@@ -45,7 +55,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #333; /* Couleur de fond de la transition */
+            background-color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -53,16 +63,17 @@
             color: white;
             font-size: 3em;
             opacity: 0;
-            visibility: hidden; /* Utiliser visibility pour cacher complètement quand opacity est 0 */
+            visibility: hidden;
+            /* Utiliser visibility pour cacher complètement quand opacity est 0 */
             transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-            z-index: 1000; /* Assurez-vous qu'il est au-dessus de tout */
+            z-index: 1000;
         }
 
         .page-transition.show {
             opacity: 1;
             visibility: visible;
         }
-        
+
         .transition-content {
             margin-bottom: 20px;
         }
@@ -77,8 +88,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Petit loader pour les détails de département */
@@ -93,9 +109,15 @@
             vertical-align: middle;
             margin-left: 10px;
         }
+
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
@@ -112,50 +134,45 @@
             <ul>
                 <li class="nav-item">
                     <a href="index.html" class="flex items-center p-2.5 hover:bg-gray-700 rounded-md">
-                        <i class="fa fa-home mr-3 text-lg"></i> Accueil
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="carte.html" class="flex items-center p-2.5 hover:bg-gray-700 rounded-md active">
-                        <i class="fa fa-map-o mr-3 text-lg"></i> Carte
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="stats.html" class="flex items-center p-2.5 hover:bg-gray-700 rounded-md">
-                        <i class="fa fa-bar-chart mr-3 text-lg"></i> Statistiques
+                        <i class="fa fa-home mr-3 text-lg"></i> Acceuil
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="apropos.html" class="flex items-center p-2.5 hover:bg-gray-700 rounded-md">
-                        <i class="fa fa-info-circle mr-3 text-lg"></i> À Propos
+                        <i class="fa fa-pencil-square-o mr-3 text-lg"></i> A propos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="stats.html" class="flex items-center p-2.5 hover:bg-gray-700 rounded-md">
+                        <i class="fa fa-line-chart mr-3 text-lg"></i> Stats
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="carte.html" class="flex items-center p-2.5 hover:bg-gray-700 rounded-md mb-10">
+                        <i class="fa fa-map-marker mr-3 text-lg"></i> Carte
                     </a>
                 </li>
             </ul>
-            <a href="https://hubeau.eaufrance.fr/page/api-qualite-eau-potable" target="_blank"
-                class="flex items-center p-2.5 rounded-md mb-10">
-                <img src="https://hubeau.eaufrance.fr/themes/custom/hubeau/images/logos/logo-hubeau-blue.svg" alt="img hub'eau"
-                    class="">
-            </a>
-            <a href="https://www.eaufrance.fr/" target="_blank" class="flex items-center p-2.5 rounded-md">
-                <img src="logo-eaufrance.png" alt="Logo Eau France" class="mb-10">
-            </a>
-            <a href="https://iut.u-pec.fr/" target="_blank" class="flex items-center p-2.5 rounded-md">
-                <img src="logo_iut.png" alt="Logo IUT créteil Vitry" class="mb-10">
-            </a>
         </div>
     </section>
 
     <main id="content">
-        <h1 class="text-3xl font-bold mb-6 text-gray-800 text-center">Carte des Départements</h1>
+        <div class="content-header mb-5 p-5 bg-white rounded-xl shadow text-pretty">
+            <h1 class="text-3xl font-bold mb-2 text-gray-800 text-center">Carte des Départements</h1>
+            <p class="text-gray-600 text-pretty text-center">Visualisez les données par département en cliquant sur la
+                carte.</p>
+        </div>
 
         <div class="flex flex-wrap -mx-4">
             <div class="w-full md:w-1/2 px-4 mb-6 md:mb-0">
-                <iframe id="mapFrame" src="carte_departements.html" class="map-container" title="Carte des Départements"></iframe>
+                <iframe id="mapFrame" src="carte_departements.html" class="map-container"
+                    title="Carte des Départements"></iframe>
             </div>
             <div class="w-full md:w-1/2 px-4">
                 <div id="department-details" class="bg-white rounded shadow p-6 h-full overflow-y-auto">
                     <h2 class="text-xl font-semibold mb-4 text-gray-800">Détails du Département</h2>
-                    <p class="text-gray-600" id="details-placeholder">Cliquez sur un département sur la carte pour voir ses détails.</p>
+                    <p class="text-gray-600" id="details-placeholder">Cliquez sur un département sur la carte pour voir
+                        ses détails.</p>
                 </div>
             </div>
         </div>
@@ -191,10 +208,10 @@
                         <h2 class="text-xl font-semibold mb-4 text-gray-800">${departmentName} (${departmentCode})</h2>
                         <p class="text-gray-700">Chargement des données pour ${departmentName}... <span class="loader-small"></span></p>
                     `;
-                    
+
                     try {
                         // Utiliser la taille maximale pour obtenir le plus de données possible
-                        const apiUrl = `https://hubeau.eaufrance.fr/api/v1/qualite_eau_potable/resultats_dis?code_departement=${departmentCode}&size=3000000&format=json`; 
+                        const apiUrl = `https://hubeau.eaufrance.fr/api/v1/qualite_eau_potable/resultats_dis?code_departement=${departmentCode}&size=3000000&format=json`;
 
                         const response = await fetch(apiUrl);
                         if (!response.ok) {
@@ -231,10 +248,8 @@
                 const distinctAnalysisTypes = new Set();
                 const distinctNetworks = new Set(); // Pour les noms des réseaux dans le tableau imbriqué
                 const distinctInstallationsAmont = new Set();
-
-                // On prend les 500 premiers résultats pour éviter une surcharge d'affichage trop importante
-                // ou ajuster cette limite si nécessaire pour les performances.
-                const dataToShow = rawData.slice(0, 500); 
+                // Limiter l'affichage à 5000 résultats pour éviter de surcharger la page
+                const dataToShow = rawData.slice(0, 5000);
 
                 dataToShow.forEach(item => {
                     if (item.libelle_parametre) distinctParams.add(item.libelle_parametre);
@@ -243,7 +258,7 @@
                     if (item.conclusion_conformite_prelevement) distinctConformities.add(item.conclusion_conformite_prelevement);
                     if (item.libelle_analyse) distinctAnalysisTypes.add(item.libelle_analyse);
                     if (item.nom_installation_amont) distinctInstallationsAmont.add(item.nom_installation_amont);
-                    
+
                     // Gérer le tableau imbriqué 'reseaux'
                     if (item.reseaux && Array.isArray(item.reseaux)) {
                         item.reseaux.forEach(reseau => {
@@ -279,10 +294,10 @@
                 htmlContent += createListHtml('Réseaux de distribution', distinctNetworks);
                 htmlContent += createListHtml('Installations en amont', distinctInstallationsAmont);
 
-                // Exemple d'affichage des 5 derniers résultats complets (pour illustration, à adapter si besoin)
-                htmlContent += `<h3 class="text-lg font-medium mb-2 text-gray-700">Derniers résultats d'analyse (max 5) :</h3>`;
+                // Affichage des résultats d'analyse récents
+                htmlContent += `<h3 class="text-lg font-medium mb-2 text-gray-700">Derniers résultats d'analyse :</h3>`;
                 htmlContent += `<div class="space-y-4 max-h-80 overflow-y-auto rounded bg-gray-50 p-2">`;
-                rawData.slice(0, 5).forEach(item => { // Prendre les 5 premiers pour ne pas surcharger
+                rawData.slice(0, 5000).forEach(item => { // Prendre les 5000 premiers pour ne pas surcharger
                     const result = item.resultat_alphanumerique || item.resultat_numerique || 'N/A';
                     const unit = item.libelle_unite || '';
                     const date = new Date(item.date_prelevement).toLocaleDateString('fr-FR') || 'N/A';
