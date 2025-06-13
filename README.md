@@ -43,7 +43,7 @@ WikiEau est une application web interactive permettant de visualiser, explorer e
 
 1. **Clonez le dépôt**  
    ```sh
-   git clone https://github.com/votre-utilisateur/S204_S201.git
+   git clone https://github.com/Ryn-GH/S204_S201.git
    cd S204_S201
    ```
 
