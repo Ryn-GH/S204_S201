@@ -25,7 +25,7 @@
 
         /* La barre latérale est fixe, le contenu principal doit la décaler */
         #sidebar {
-            width: 250px; 
+            width: 200px; 
             z-index: 10; /* Assurez-vous qu'elle est au-dessus des autres contenus */
         }
 
@@ -40,25 +40,6 @@
         overflow-y: auto;
         }
 
-        /* Styles pour la transition de page */
-        .page-transition {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #333; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            color: white;
-            font-size: 3em;
-            opacity: 0;
-            visibility: hidden; /* Utiliser visibility pour cacher complètement quand opacity est 0 */
-            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-            z-index: 1000; 
-        }
 
         .page-transition.show {
             opacity: 1;
@@ -133,6 +114,17 @@
                     </a>
                 </li>
             </ul>
+            <a href="https://hubeau.eaufrance.fr/page/api-qualite-eau-potable" target="_blank"
+                class="flex items-center p-2.5 rounded-md mb-10">
+                <img src="https://hubeau.eaufrance.fr/themes/custom/hubeau/images/logos/logo-hubeau-blue.svg"
+                    alt="img hub'eau" class="">
+            </a>
+            <a href="https://www.eaufrance.fr/" target="_blank" class="flex items-center p-2.5 rounded-md">
+                <img src="logo-eaufrance.png" alt="Logo Eau France" class="mb-10">
+            </a>
+            <a href="https://iut.u-pec.fr/" target="_blank" class="flex items-center p-2.5 rounded-md">
+                <img src="logo_iut.png" alt="Logo IUT créteil Vitry" class="mb-10">
+            </a>
         </div>
     </section>
 
@@ -183,8 +175,11 @@
 
                     departmentDetailsDiv.innerHTML = `
                         <h2 class="text-xl font-semibold mb-4 text-gray-800">${departmentName} (${departmentCode})</h2>
-                        <p class="text-gray-700">Chargement des données pour ${departmentName}... <span class="loader-small"></span></p>
-                    `;
+                        <p class="text-gray-700">
+                            Chargement des données pour ${departmentName}...
+                            <img src="giphy.gif" alt="Chargement..." style="display:inline-block;width:30px;height:30px;vertical-align:left;">
+                        </p>
+`;
                     
                     try {
                         // Utiliser la taille maximale pour obtenir le plus de données possible
