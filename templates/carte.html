@@ -13,7 +13,7 @@
         /* Styles spécifiques pour l'iframe de la carte */
         .map-container {
             width: 100%;
-            height: 700px;
+            height: 700px; 
             border: none;
         }
 
@@ -27,25 +27,19 @@
 
         /* La barre latérale est fixe, le contenu principal doit la décaler */
         #sidebar {
-            width: 250px;
-            z-index: 10;
-            /* Assurez-vous qu'elle est au-dessus des autres contenus */
+            width: 250px; 
+            z-index: 10; /* Assurez-vous qu'elle est au-dessus des autres contenus */
         }
 
         /* Le contenu principal doit être décalé de la largeur de la sidebar */
         #content {
-            margin-left: 250px;
-            /* Doit correspondre à la largeur de la sidebar */
-            flex-grow: 1;
-            /* Permet au contenu de prendre tout l'espace restant */
-            padding: 2.5rem;
-            /* Espace autour du contenu principal */
+            margin-left: 250px; /* Doit correspondre à la largeur de la sidebar */
+            flex-grow: 1; /* Permet au contenu de prendre tout l'espace restant */
+            padding: 2.5rem; /* Espace autour du contenu principal */
         }
-
         #department-details {
-            max-height: 700px;
-            /* même hauteur que la carte */
-            overflow-y: auto;
+        max-height: 700px; /* même hauteur que la carte */
+        overflow-y: auto;
         }
 
         /* Styles pour la transition de page */
@@ -55,7 +49,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #333;
+            background-color: #333; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -66,7 +60,7 @@
             visibility: hidden;
             /* Utiliser visibility pour cacher complètement quand opacity est 0 */
             transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-            z-index: 1000;
+            z-index: 1000; 
         }
 
         .page-transition.show {
@@ -159,8 +153,7 @@
     <main id="content">
         <div class="content-header mb-5 p-5 bg-white rounded-xl shadow text-pretty">
             <h1 class="text-3xl font-bold mb-2 text-gray-800 text-center">Carte des Départements</h1>
-            <p class="text-gray-600 text-pretty text-center">Visualisez les données par département en cliquant sur la
-                carte.</p>
+            <p class="text-gray-600 text-pretty text-center">Visualisez les données par département en cliquant sur la carte.</p>
         </div>
 
         <div class="flex flex-wrap -mx-4">
@@ -249,7 +242,7 @@
                 const distinctNetworks = new Set(); // Pour les noms des réseaux dans le tableau imbriqué
                 const distinctInstallationsAmont = new Set();
                 // Limiter l'affichage à 5000 résultats pour éviter de surcharger la page
-                const dataToShow = rawData.slice(0, 5000);
+                const dataToShow = rawData.slice(0, 5000); 
 
                 dataToShow.forEach(item => {
                     if (item.libelle_parametre) distinctParams.add(item.libelle_parametre);
