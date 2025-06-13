@@ -1,2 +1,2 @@
 # S204_S201
-ce projet consiste a visualiser des donnees issus de Hub'eau
+Cette branche contient les codes sources liés au développement de l'application: la Vue, le Modèle et le Contrôleur du modèle MVC.
