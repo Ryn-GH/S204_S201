@@ -65,7 +65,7 @@ WikiEau est une application web interactive permettant de visualiser, explorer e
    ```
 
 5. **Accédez à l’application**  
-   Ouvrez votre navigateur à l’adresse [http://localhost:5000/index.html](http://localhost:5000/index.html)
+   Ouvrez votre navigateur à l’adresse [http://localhost:5000/templates/index.html](http://localhost:5000/templates/index.html)
 
 ## Utilisation
 
