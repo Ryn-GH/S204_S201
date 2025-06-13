@@ -1,6 +1,23 @@
 /* Importation de la police Inter */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+html,
+body {
+    height: 100%;
+    /* S'assure que html et body prennent 100% de la hauteur de la fenêtre */
+    overflow-x: hidden;
+    /* Empêche le défilement horizontal non désiré */
+    overflow-y: auto;
+    /* Permet le défilement vertical si le contenu déborde */
+}
+
+/* Assurez-vous que #content peut s'étirer ou est assez grand */
+#content {
+    min-height: 100vh;
+    /* Permet à la section de prendre au moins toute la hauteur de la fenêtre */
+    /* Gardez vos autres styles comme padding-top, margin-left, etc. */
+}
+
 body {
     font-family: 'Inter', sans-serif;
 }
@@ -22,6 +39,7 @@ body {
     transition: opacity 0.3s ease-in-out, margin-left 0.3s ease;
     /* Ajout d'une transition pour la marge gauche */
 }
+
 
 /* Styles pour la barre de défilement personnalisée */
 .sidebar-nav::-webkit-scrollbar {
@@ -149,9 +167,8 @@ body {
 /* Conteneur pour le canvas afin de gérer sa taille et son apparence */
 .chart-container {
     position: relative;
-    width: 100%;
+    /* width: 100%; */
     /* Utilise toute la largeur disponible dans son parent */
-    max-width: 700px;
     /* Largeur maximale pour les grands écrans */
     height: 400px;
     /* Hauteur fixe pour le conteneur */
@@ -165,6 +182,8 @@ body {
     align-items: center;
     margin: 1rem;
     /* Ajout d'une marge pour l'espacement */
+    padding-top: 60px;
+    padding-bottom: 60px;
 }
 
 .chart-container h1 {
