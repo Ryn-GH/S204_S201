@@ -149,9 +149,8 @@ body {
 /* Conteneur pour le canvas afin de gérer sa taille et son apparence */
 .chart-container {
     position: relative;
-    width: 100%;
+    /* width: 100%; */
     /* Utilise toute la largeur disponible dans son parent */
-    max-width: 700px;
     /* Largeur maximale pour les grands écrans */
     height: 400px;
     /* Hauteur fixe pour le conteneur */
@@ -165,6 +164,8 @@ body {
     align-items: center;
     margin: 1rem;
     /* Ajout d'une marge pour l'espacement */
+    padding-top: 60px;
+    padding-bottom: 60px;
 }
 
 .chart-container h1 {
