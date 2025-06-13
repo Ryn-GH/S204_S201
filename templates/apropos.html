@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WikiEau</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="goutte_eau.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body class="flex font-sans antialiased bg-gray-100">
+
+    <div id="page-transition" class="page-transition">
+        <div class="transition-content">WikiEau</div>
+        <div class="loader"></div>
+    </div>
+
+    <section id="sidebar" class="sidebar fixed top-0 left-0 bg-gray-800 text-gray-100 shadow-md">
+        <div id="sidebar-nav" class="sidebar-nav p-2.5">
+            <ul>
+                <li class="nav-item">
+                    <a href="index.html" class="flex items-center p-2.5 hover:bg-gray-700 rounded-md">
+                        <i class="fa fa-home mr-3 text-lg"></i> Acceuil
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="#" class="flex items-center p-2.5 hover:bg-gray-700 rounded-md">
+                        <i class="fa fa-pencil-square-o mr-3 text-lg"></i> A propos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="stats.html" class="flex items-center p-2.5 hover:bg-gray-700 rounded-md">
+                        <i class="fa fa-line-chart mr-3 text-lg"></i> Stats
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="carte.html" class="flex items-center p-2.5 hover:bg-gray-700 rounded-md">
+                        <i class="fa fa-map-marker mr-3 text-lg"></i> Carte
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="content" class="content ml-64 p-5">
+        </div>
+        <div class="content p-5 bg-gray-100 text-pretty">
+            <div class="content-header mb-5 p-5 bg-white rounded-xl shadow text-pretty">
+                <h1 class="text-3xl font-bold mb-2 text-gray-800">A propos</h1>
+                <p class="text-gray-600 text-pretty">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+
+                <!-- Notre démarche -->
+                <div class="bg-white rounded-2xl shadow-xl p-6 h-full border-l-8 border-blue-400 card-hover">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">🧭 Notre démarche</h2>
+                    <p class="text-gray-700">
+                        Cette plateforme a été réalisée dans le cadre des SAE 2.01 et 2.04 de notre première année de
+                        BUT Informatique.
+                        Elle vise à rendre accessibles les données publiques sur la qualité de l’eau potable en France à
+                        travers l’API Hub’Eau.
+                    </p>
+                    <p class="mt-2 text-gray-700">
+                        Nous avons développé une interface simple, claire et interactive, pour que tout utilisateur,
+                        professionnel ou non, puisse
+                        visualiser les données en temps réel.
+                    </p>
+                </div>
+
+                <!--  Méthode de travail -->
+                <div class="bg-white rounded-2xl shadow-xl p-6 h-full border-l-8 border-green-400 card-hover">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">🛠️ Méthode de travail</h2>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Analyse des besoins (choix des données, points de mesure)</li>
+                        <li>Modélisation d’une base de données relationnelle</li>
+                        <li>Développement d’un script d’importation</li>
+                        <li>Création d’une interface web</li>
+                        <li>Requêtes dynamiques vers l’API Hub’Eau</li>
+                    </ul>
+                    <p class="mt-3 text-sm text-gray-600">
+                        -Architecture MVC avec Flask (modèle, vue, contrôleur)<br>
+                        -Tests effectués pour assurer la fiabilité même sans API
+                    </p>
+                </div>
+
+                <!-- Choix techniques -->
+                <div class="bg-white rounded-2xl shadow-xl p-6 h-full border-l-8 border-yellow-400 card-hover">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">⚙️ Choix techniques</h2>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Stockage local des données statiques pour améliorer les performances</li>
+                        <li>Utilisation de Flask en architecture MVC</li>
+                        <li>Python orienté objet pour un code structuré</li>
+                        <li>Requêtes temps réel à l’API Hub’Eau</li>
+                    </ul>
+                </div>
+
+                <!-- API et données utilisées -->
+                <div class="bg-white rounded-2xl shadow-xl p-6 h-full border-l-8 border-purple-400 card-hover">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">🌐 API et données utilisées</h2>
+                    <p class="text-gray-700 mb-2">
+                        L’API <strong>Hub’Eau</strong> fournit en temps réel les indicateurs sur la qualité de l’eau
+                        potable.
+                        Les données statiques sont importées et stockées localement.
+                    </p>
+                    <p class="text-sm text-gray-600">
+                        ✅ Un script automatise la mise à jour pour garder l’application autonome et à jour.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+        </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('#sidebar-nav a');
+            const contentArea = document.querySelector('#content');
+            const pageTransition = document.getElementById('page-transition');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault(); // Empêche la navigation immédiate
+                    const targetHref = this.getAttribute('href');
+
+                    // Déclenche le fondu sortant du contenu actuel
+                    contentArea.style.opacity = 0;
+
+                    // Affiche l'écran de transition avec le texte
+                    pageTransition.style.display = 'flex';
+                    setTimeout(() => {
+                        pageTransition.style.opacity = 1;
+                    }, 10);
+
+                    // Redirige vers la nouvelle page après la transition sortante et l'affichage du texte
+                    setTimeout(() => {
+                        pageTransition.style.opacity = 0; // Commence le fondu sortant de l'écran de transition
+                        setTimeout(() => {
+                            pageTransition.style.display = 'none'; // Cache l'écran de transition
+                            window.location.href = targetHref; // Redirige enfin
+                        }, 300); // Durée du fondu sortant de l'écran de transition
+                    }, 500); // Temps de la transition sortante du contenu + affichage du texte
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
