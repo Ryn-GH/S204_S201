@@ -91,4 +91,4 @@ Projet réalisé dans le cadre des SAE 2.01 et 2.04 du BUT Informatique – IUT 
 
 ---
 
-**Licence** : Projet pédagogique, libre de réutilisation à des fins
+**Licence** : Projet pédagogique, libre de réutilisation.
