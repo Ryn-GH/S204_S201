@@ -7,19 +7,29 @@
     <title>WikiEau</title>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="goutte_eau.png" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // C'est la ligne clé pour activer le mode sombre par classe
+            theme: {
+                extend: {},
+            },
+            plugins: [],
+        }
+    </script>
 </head>
 
-<body class="flex font-sans antialiased bg-gray-100">
+<body class="flex font-sans antialiased bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
 
     <div id="page-transition" class="page-transition">
         <div class="transition-content">WikiEau</div>
         <div class="loader"></div>
     </div>
 
-    <section id="sidebar" class="sidebar fixed top-0 left-0 bg-gray-800 text-gray-100 shadow-md">
+    <section id="sidebar" class="sidebar fixed top-0 left-0 bg-gray-800 text-gray-100 shadow-md dark:bg-gray-900">
         <div id="sidebar-nav" class="sidebar-nav p-2.5">
             <ul>
                 <li class="nav-item">
@@ -58,35 +68,57 @@
     </section>
 
     <section id="content" class="content ml-64 p-5 w-full">
-        <div class="content p-5 bg-gray-100 text-pretty">
-            <div class="content-header mb-5 p-5 bg-white rounded-xl shadow text-pretty">
-                <h1 class="text-3xl font-bold mb-2 text-gray-800">Statistiques de Qualité de l'Eau Potable</h1>
-                <p class="text-gray-600 text-pretty">Explorez les données de qualité de l'eau potable par département et
+        <div>
+            <!-- From Uiverse.io by JustCode14 -->
+            <label class="switch" id="darkModeToggle">
+                <input class="input__check" id="checkbox" type="checkbox" />
+                <span class="slider">
+                    <div class="star star_1"></div>
+                    <div class="star star_2"></div>
+                    <div class="star star_3"></div>
+                    <svg viewBox="0 0 16 16" class="cloud_1 cloud">
+                        <path transform="matrix(.77976 0 0 .78395-299.99-418.63)" fill="#fff"
+                            d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.925">
+                        </path>
+                    </svg>
+                </span>
+            </label>
+        </div>
+        <div class="content p-5 bg-gray-100 text-pretty dark:bg-gray-800 dark:text-gray-200">
+            <div
+                class="content-header mb-5 p-5 bg-white rounded-xl shadow text-pretty dark:bg-gray-700 dark:text-gray-200">
+                <h1 class="text-3xl font-bold mb-2 text-gray-800 dark:text-gray-200">Statistiques de Qualité de l'Eau
+                    Potable</h1>
+                <p class="text-gray-600 text-pretty dark:text-gray-300">Explorez les données de qualité de l'eau potable
+                    par département et
                     paramètre.</p>
             </div>
 
             <div class="flex flex-wrap -mx-4 mb-6">
                 <div class="w-full md:w-1/3 px-4 mb-4 md:mb-0">
-                    <label for="departement-select" class="block text-gray-700 text-sm font-bold mb-2">Choisir un
+                    <label for="departement-select"
+                        class="block text-gray-700 text-sm font-bold mb-2 dark:text-gray-300">Choisir un
                         département :</label>
                     <select id="departement-select"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:text-gray-200">
                         <option value="">Chargement des départements...</option>
                     </select>
                 </div>
                 <div class="w-full md:w-1/3 px-4 mb-4 md:mb-0">
-                    <label for="parametre-select" class="block text-gray-700 text-sm font-bold mb-2">Choisir un
+                    <label for="parametre-select"
+                        class="block text-gray-700 text-sm font-bold mb-2 dark:text-gray-300">Choisir un
                         paramètre :</label>
                     <select id="parametre-select"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:text-gray-200">
                         <option value="">Chargement des paramètres...</option>
                     </select>
                 </div>
                 <div class="w-full md:w-1/3 px-4">
-                    <label for="chart-type-select" class="block text-gray-700 text-sm font-bold mb-2">Type de graphique
+                    <label for="chart-type-select"
+                        class="block text-gray-700 text-sm font-bold mb-2 dark:text-gray-300">Type de graphique
                         :</label>
                     <select id="chart-type-select"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:text-gray-200">
                         <option value="bar">Barres</option>
                         <option value="line">Lignes</option>
                         <option value="pie">Camembert</option>
@@ -94,17 +126,22 @@
                 </div>
             </div>
 
-            <div class="chart-container bg-white rounded shadow w-full">
-                <h1 id="chart-title">Qualité de l'eau par département et paramètre</h1>
-                <canvas id="qualityChart" aria-label="Graphique de qualité de l'eau" role="img"></canvas>
-                <p id="loading-message" class="text-gray-600 text-center py-4 hidden">Chargement des données...</p>
-                <p id="error-message" class="text-red-500 text-center py-4 hidden">Une erreur est survenue lors du
+            <div class="chart-container bg-white rounded shadow w-full dark:bg-gray-700 dark:text-gray-200">
+                <h1 id="chart-title" class="text-gray-800 dark:text-gray-200">Qualité de l'eau par département et
+                    paramètre</h1>
+                <canvas id="qualityChart" aria-label="Graphique de qualité de l'eau" role="img"
+                    class="dark:text-gray-200"></canvas>
+                <p id="loading-message" class="text-gray-600 text-center py-4 hidden dark:text-gray-400">Chargement des
+                    données...</p>
+                <p id="error-message" class="text-red-500 text-center py-4 hidden dark:text-red-400">Une erreur est
+                    survenue lors du
                     chargement des données.</p>
-                <p id="no-data-message" class="text-gray-600 text-center py-4 hidden">Aucune donnée disponible pour les
+                <p id="no-data-message" class="text-gray-600 text-center py-4 hidden dark:text-gray-400">Aucune donnée
+                    disponible pour les
                     filtres sélectionnés.
                 </p>
                 <button id="download-chart" class="button">
-                    <span class="liquid"></span>  
+                    <span class="liquid"></span>
                     <span class="btn-txt">Télécharger</span>
                 </button>
             </div>
@@ -436,6 +473,44 @@
             link.href = canvas.toDataURL('image/png');
             link.download = 'graphique_qualite_eau.png';
             link.click();
+        });
+    </script>
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const htmlElement = document.documentElement;
+        const inputCheck = document.getElementById('checkbox');
+
+        // Fonction pour appliquer le thème
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                inputCheck.checked = false; // décoché = mode sombre
+            } else {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                inputCheck.checked = true; // coché = mode clair
+            }
+        }
+
+        // Initialisation du thème au chargement de la page
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme) {
+            applyTheme(storedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            applyTheme('dark');
+        } else {
+            applyTheme('light');
+        }
+
+        // Gestion du clic sur le label
+        darkModeToggle.addEventListener('click', () => {
+            // checked = mode clair, décoché = mode sombre
+            if (inputCheck.checked) {
+                applyTheme('light');
+            } else {
+                applyTheme('dark');
+            }
         });
     </script>
 </body>
