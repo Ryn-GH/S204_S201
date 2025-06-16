@@ -6,19 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WikiEau</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="goutte_eau.png" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // C'est la ligne clé pour activer le mode sombre par classe
+            theme: {
+                extend: {},
+            },
+            plugins: [],
+        }
+    </script>
 </head>
 
-<body class="flex font-sans antialiased bg-gray-100">
+<body class="flex font-sans antialiased bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
 
     <div id="page-transition" class="page-transition">
         <div class="transition-content">WikiEau</div>
         <div class="loader"></div>
     </div>
 
-    <section id="sidebar" class="sidebar fixed top-0 left-0 bg-gray-800 text-gray-100 shadow-md">
+    <section id="sidebar"
+        class="sidebar fixed top-0 left-0 bg-gray-800 dark:bg-gray-900 text-gray-100 shadow-md h-full w-64 transition-transform duration-300 ease-in-out">
         <div id="sidebar-nav" class="sidebar-nav p-2.5">
             <ul>
                 <li class="nav-item">
@@ -43,12 +54,12 @@
                 </li>
             </ul>
             <a href="https://hubeau.eaufrance.fr/page/api-qualite-eau-potable" target="_blank"
-                class="flex items-center p-2.5 rounded-md mb-10">
-                <img src="https://hubeau.eaufrance.fr/themes/custom/hubeau/images/logos/logo-hubeau-blue.svg" alt="img hub'eau"
-                    class="">
+                class="flex items-center p-2.5 rounded-md mb-10 ml-5">
+                <img src="https://hubeau.eaufrance.fr/themes/custom/hubeau/images/logos/logo-hubeau-blue.svg"
+                    alt="img hub'eau" class="">
             </a>
             <a href="https://www.eaufrance.fr/" target="_blank" class="flex items-center p-2.5 rounded-md">
-                <img src="logo-eaufrance.png" alt="Logo Eau France" class="mb-10">
+                <img src="logo-eaufrance.png" alt="Logo Eau France" class="mb-10 ml-5">
             </a>
             <a href="https://iut.u-pec.fr/" target="_blank" class="flex items-center p-2.5 rounded-md">
                 <img src="logo_iut.png" alt="Logo IUT créteil Vitry" class="mb-10">
@@ -57,24 +68,41 @@
     </section>
 
     <section id="content" class="content ml-64 p-5">
+        <div>
+            <!-- From Uiverse.io by JustCode14 -->
+            <label class="switch" id="darkModeToggle">
+                <input class="input__check" id="checkbox" type="checkbox" />
+                <span class="slider">
+                    <div class="star star_1"></div>
+                    <div class="star star_2"></div>
+                    <div class="star star_3"></div>
+                    <svg viewBox="0 0 16 16" class="cloud_1 cloud">
+                        <path transform="matrix(.77976 0 0 .78395-299.99-418.63)" fill="#fff"
+                            d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.925">
+                        </path>
+                    </svg>
+                </span>
+            </label>
         </div>
-        <div class="content p-5 bg-gray-100 text-pretty">
-            <div class="content-header mb-5 p-5 bg-white rounded-xl shadow text-pretty">
-                <h1 class="text-3xl font-bold mb-2 text-gray-800">A propos</h1>
-                <p class="text-gray-600 text-pretty">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <div class="content p-5 bg-gray-100 text-pretty dark:bg-gray-800">
+            <div class="content-header mb-5 p-5 bg-white rounded-xl shadow text-pretty dark:bg-gray-700">
+                <h1 class="text-3xl font-bold mb-2 text-gray-800 dark:text-gray-200">A propos</h1>
+                <p class="text-gray-600 text-pretty dark:text-gray-200">Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 bg-gray-100 dark:bg-gray-800">
 
                 <!-- Notre démarche -->
-                <div class="bg-white rounded-2xl shadow-xl p-6 h-full border-l-8 border-blue-400 card-hover">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">🧭 Notre démarche</h2>
-                    <p class="text-gray-700">
+                <div
+                    class="bg-white rounded-2xl shadow-xl p-6 h-full border-l-8 border-blue-400 card-hover dark:bg-gray-700">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 dark:text-gray-200">🧭 Notre démarche</h2>
+                    <p class="text-gray-700 dark:text-gray-300">
                         Cette plateforme a été réalisée dans le cadre des SAE 2.01 et 2.04 de notre première année de
                         BUT Informatique.
                         Elle vise à rendre accessibles les données publiques sur la qualité de l’eau potable en France à
                         travers l’API Hub’Eau.
                     </p>
-                    <p class="mt-2 text-gray-700">
+                    <p class="mt-2 text-gray-700 dark:text-gray-300">
                         Nous avons développé une interface simple, claire et interactive, pour que tout utilisateur,
                         professionnel ou non, puisse
                         visualiser les données en temps réel.
@@ -82,25 +110,27 @@
                 </div>
 
                 <!--  Méthode de travail -->
-                <div class="bg-white rounded-2xl shadow-xl p-6 h-full border-l-8 border-green-400 card-hover">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">🛠️ Méthode de travail</h2>
-                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                <div
+                    class="bg-white rounded-2xl shadow-xl p-6 h-full border-l-8 border-green-400 card-hover dark:bg-gray-700">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 dark:text-gray-200">🛠️ Méthode de travail</h2>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1 dark:text-gray-300">
                         <li>Analyse des besoins (choix des données, points de mesure)</li>
                         <li>Modélisation d’une base de données relationnelle</li>
                         <li>Développement d’un script d’importation</li>
                         <li>Création d’une interface web</li>
                         <li>Requêtes dynamiques vers l’API Hub’Eau</li>
                     </ul>
-                    <p class="mt-3 text-sm text-gray-600">
+                    <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">
                         -Architecture MVC avec Flask (modèle, vue, contrôleur)<br>
                         -Tests effectués pour assurer la fiabilité même sans API
                     </p>
                 </div>
 
                 <!-- Choix techniques -->
-                <div class="bg-white rounded-2xl shadow-xl p-6 h-full border-l-8 border-yellow-400 card-hover">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">⚙️ Choix techniques</h2>
-                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                <div
+                    class="bg-white rounded-2xl shadow-xl p-6 h-full border-l-8 border-yellow-400 card-hover dark:bg-gray-700">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 dark:text-gray-200">⚙️ Choix techniques</h2>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1 dark:text-gray-300">
                         <li>Stockage local des données statiques pour améliorer les performances</li>
                         <li>Utilisation de Flask en architecture MVC</li>
                         <li>Python orienté objet pour un code structuré</li>
@@ -109,14 +139,16 @@
                 </div>
 
                 <!-- API et données utilisées -->
-                <div class="bg-white rounded-2xl shadow-xl p-6 h-full border-l-8 border-purple-400 card-hover">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">🌐 API et données utilisées</h2>
-                    <p class="text-gray-700 mb-2">
+                <div
+                    class="bg-white rounded-2xl shadow-xl p-6 h-full border-l-8 border-purple-400 card-hover dark:bg-gray-700">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 dark:text-gray-200">🌐 API et données utilisées
+                    </h2>
+                    <p class="text-gray-700 mb-2 dark:text-gray-300">
                         L’API <strong>Hub’Eau</strong> fournit en temps réel les indicateurs sur la qualité de l’eau
                         potable.
                         Les données statiques sont importées et stockées localement.
                     </p>
-                    <p class="text-sm text-gray-600">
+                    <p class="text-sm text-gray-600 dark:text-gray-300">
                         ✅ Un script automatise la mise à jour pour garder l’application autonome et à jour.
                     </p>
                 </div>
@@ -158,6 +190,44 @@
                     }, 500); // Temps de la transition sortante du contenu + affichage du texte
                 });
             });
+        });
+    </script>
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const htmlElement = document.documentElement;
+        const inputCheck = document.getElementById('checkbox');
+
+        // Fonction pour appliquer le thème
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                inputCheck.checked = false; // décoché = mode sombre
+            } else {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                inputCheck.checked = true; // coché = mode clair
+            }
+        }
+
+        // Initialisation du thème au chargement de la page
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme) {
+            applyTheme(storedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            applyTheme('dark');
+        } else {
+            applyTheme('light');
+        }
+
+        // Gestion du clic sur le label
+        darkModeToggle.addEventListener('click', () => {
+            // checked = mode clair, décoché = mode sombre
+            if (inputCheck.checked) {
+                applyTheme('light');
+            } else {
+                applyTheme('dark');
+            }
         });
     </script>
 
