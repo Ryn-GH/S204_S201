@@ -6,38 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WikiEau</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="goutte_eau.png" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // C'est la ligne clé pour activer le mode sombre par classe
+            theme: {
+                extend: {},
+            },
+            plugins: [],
+        }
+    </script>
     <style>
         /* Styles spécifiques pour l'iframe de la carte */
         .map-container {
             width: 100%;
-            height: 700px; 
+            height: 700px;
             border: none;
         }
 
         /* Styles pour le corps de la page pour gérer la barre latérale et le contenu principal */
         body {
-            display: flex; /* Utilise flexbox pour aligner la sidebar et le main */
-            min-height: 100vh; /* Assure que le corps prend au moins toute la hauteur de la fenêtre */
+            display: flex;
+            /* Utilise flexbox pour aligner la sidebar et le main */
+            min-height: 100vh;
+            /* Assure que le corps prend au moins toute la hauteur de la fenêtre */
         }
 
         /* La barre latérale est fixe, le contenu principal doit la décaler */
         #sidebar {
-            width: 200px; 
-            z-index: 10; /* Assurez-vous qu'elle est au-dessus des autres contenus */
+            width: 200px;
+            z-index: 10;
+            /* Assurez-vous qu'elle est au-dessus des autres contenus */
         }
 
         /* Le contenu principal doit être décalé de la largeur de la sidebar */
         #content {
-            margin-left: 250px; /* Doit correspondre à la largeur de la sidebar */
-            flex-grow: 1; /* Permet au contenu de prendre tout l'espace restant */
-            padding: 2.5rem; /* Espace autour du contenu principal */
+            margin-left: 250px;
+            /* Doit correspondre à la largeur de la sidebar */
+            flex-grow: 1;
+            /* Permet au contenu de prendre tout l'espace restant */
+            padding: 2.5rem;
+            /* Espace autour du contenu principal */
         }
+
         #department-details {
-        max-height: 700px; /* même hauteur que la carte */
-        overflow-y: auto;
+            max-height: 700px;
+            /* même hauteur que la carte */
+            overflow-y: auto;
         }
 
 
@@ -45,7 +63,7 @@
             opacity: 1;
             visibility: visible;
         }
-        
+
         .transition-content {
             margin-bottom: 20px;
         }
@@ -60,8 +78,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Petit loader pour les détails de département */
@@ -76,21 +99,27 @@
             vertical-align: middle;
             margin-left: 10px;
         }
+
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
 
-<body class="font-sans antialiased bg-gray-100">
+<body class="flex font-sans antialiased bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
 
     <div id="page-transition" class="page-transition">
         <div class="transition-content">WikiEau</div>
         <div class="loader"></div>
     </div>
 
-    <section id="sidebar" class="sidebar fixed top-0 left-0 h-full bg-gray-800 text-gray-100 shadow-md">
+    <section id="sidebar" class="sidebar fixed top-0 left-0 bg-gray-800 dark:bg-gray-900 text-gray-100 shadow-md h-full w-64 transition-transform duration-300 ease-in-out">
         <div id="sidebar-nav" class="sidebar-nav p-2.5">
             <ul>
                 <li class="nav-item">
@@ -129,19 +158,38 @@
     </section>
 
     <main id="content">
-        <div class="content-header mb-5 p-5 bg-white rounded-xl shadow text-pretty">
-            <h1 class="text-3xl font-bold mb-2 text-gray-800 text-center">Carte des Départements</h1>
-            <p class="text-gray-600 text-pretty text-center">Visualisez les données par département en cliquant sur la carte.</p>
+        <div>
+            <!-- From Uiverse.io by JustCode14 -->
+            <label class="switch" id="darkModeToggle">
+                <input class="input__check" id="checkbox" type="checkbox" />
+                <span class="slider">
+                    <div class="star star_1"></div>
+                    <div class="star star_2"></div>
+                    <div class="star star_3"></div>
+                    <svg viewBox="0 0 16 16" class="cloud_1 cloud">
+                        <path transform="matrix(.77976 0 0 .78395-299.99-418.63)" fill="#fff"
+                            d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.925">
+                        </path>
+                    </svg>
+                </span>
+            </label>
+        </div>
+        <div class="content-header mb-5 p-5 bg-white rounded-xl shadow text-pretty dark:bg-gray-700">
+            <h1 class="text-3xl font-bold mb-2 text-gray-800 text-center dark:text-gray-200">Carte des Départements</h1>
+            <p class="text-gray-600 text-pretty text-center dark:text-gray-300">Visualisez les données par département en cliquant sur la
+                carte.</p>
         </div>
 
         <div class="flex flex-wrap -mx-4">
             <div class="w-full md:w-1/2 px-4 mb-6 md:mb-0">
-                <iframe id="mapFrame" src="carte_departements.html" class="map-container" title="Carte des Départements"></iframe>
+                <iframe id="mapFrame" src="carte_departements.html" class="map-container"
+                    title="Carte des Départements"></iframe>
             </div>
             <div class="w-full md:w-1/2 px-4">
-                <div id="department-details" class="bg-white rounded shadow p-6 h-full overflow-y-auto">
-                    <h2 class="text-xl font-semibold mb-4 text-gray-800">Détails du Département</h2>
-                    <p class="text-gray-600" id="details-placeholder">Cliquez sur un département sur la carte pour voir ses détails.</p>
+                <div id="department-details" class="bg-white rounded shadow p-6 h-full overflow-y-auto dark:bg-gray-700">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Détails du Département</h2>
+                    <p class="text-gray-600 dark:text-gray-300" id="details-placeholder">Cliquez sur un département sur la carte pour voir
+                        ses détails.</p>
                 </div>
             </div>
         </div>
@@ -174,16 +222,16 @@
                     const departmentCode = event.data.code;
 
                     departmentDetailsDiv.innerHTML = `
-                        <h2 class="text-xl font-semibold mb-4 text-gray-800">${departmentName} (${departmentCode})</h2>
-                        <p class="text-gray-700">
+                        <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">${departmentName} (${departmentCode})</h2>
+                        <p class="text-gray-700 dark:text-gray-300">
                             Chargement des données pour ${departmentName}...
                             <img src="giphy.gif" alt="Chargement..." style="display:inline-block;width:30px;height:30px;vertical-align:left;">
                         </p>
 `;
-                    
+
                     try {
                         // Utiliser la taille maximale pour obtenir le plus de données possible
-                        const apiUrl = `https://hubeau.eaufrance.fr/api/v1/qualite_eau_potable/resultats_dis?code_departement=${departmentCode}&size=3000000&format=json`; 
+                        const apiUrl = `https://hubeau.eaufrance.fr/api/v1/qualite_eau_potable/resultats_dis?code_departement=${departmentCode}&size=3000000&format=json`;
 
                         const response = await fetch(apiUrl);
                         if (!response.ok) {
@@ -196,7 +244,7 @@
                     } catch (error) {
                         console.error("Erreur lors du chargement des données API :", error);
                         departmentDetailsDiv.innerHTML = `
-                            <h2 class="text-xl font-semibold mb-4 text-gray-800">${departmentName} (${departmentCode})</h2>
+                            <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">${departmentName} (${departmentCode})</h2>
                             <p class="text-red-500">Erreur lors du chargement des données : ${error.message}. Veuillez réessayer.</p>
                         `;
                     }
@@ -206,8 +254,8 @@
             function displayDepartmentDetails(departmentName, departmentCode, rawData) {
                 if (!rawData || rawData.length === 0) {
                     departmentDetailsDiv.innerHTML = `
-                        <h2 class="text-xl font-semibold mb-4 text-gray-800">${departmentName} (${departmentCode})</h2>
-                        <p class="text-gray-600">Aucune donnée détaillée trouvée pour ce département.</p>
+                        <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">${departmentName} (${departmentCode})</h2>
+                        <p class="text-gray-600 dark:text-gray-300">Aucune donnée détaillée trouvée pour ce département.</p>
                     `;
                     return;
                 }
@@ -221,7 +269,7 @@
                 const distinctNetworks = new Set(); // Pour les noms des réseaux dans le tableau imbriqué
                 const distinctInstallationsAmont = new Set();
                 // Limiter l'affichage à 5000 résultats pour éviter de surcharger la page
-                const dataToShow = rawData.slice(0, 5000); 
+                const dataToShow = rawData.slice(0, 5000);
 
                 dataToShow.forEach(item => {
                     if (item.libelle_parametre) distinctParams.add(item.libelle_parametre);
@@ -230,7 +278,7 @@
                     if (item.conclusion_conformite_prelevement) distinctConformities.add(item.conclusion_conformite_prelevement);
                     if (item.libelle_analyse) distinctAnalysisTypes.add(item.libelle_analyse);
                     if (item.nom_installation_amont) distinctInstallationsAmont.add(item.nom_installation_amont);
-                    
+
                     // Gérer le tableau imbriqué 'reseaux'
                     if (item.reseaux && Array.isArray(item.reseaux)) {
                         item.reseaux.forEach(reseau => {
@@ -240,15 +288,15 @@
                 });
 
                 let htmlContent = `
-                    <h2 class="text-xl font-semibold mb-4 text-gray-800">${departmentName} (${departmentCode})</h2>
-                    <p class="text-gray-700 mb-4">Aperçu des données les plus récentes de l'API Hubeau.</p>
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">${departmentName} (${departmentCode})</h2>
+                    <p class="text-gray-700 mb-4 dark:text-gray-300">Aperçu des données les plus récentes de l'API Hubeau.</p>
                 `;
 
                 // Affichage des informations
                 const createListHtml = (title, set) => {
                     if (set.size > 0) {
-                        let listHtml = `<h3 class="text-lg font-medium mb-2 text-gray-700">${title} (${set.size}) :</h3>`;
-                        listHtml += `<ul class="list-disc list-inside text-gray-700 mb-4 max-h-40 overflow-y-auto rounded bg-gray-50 p-2">`;
+                        let listHtml = `<h3 class="text-lg font-medium mb-2 text-gray-700 dark:text-gray-300">${title} (${set.size}) :</h3>`;
+                        listHtml += `<ul class="list-disc list-inside text-gray-700 mb-4 max-h-40 overflow-y-auto rounded bg-gray-50 p-2 dark:bg-gray-800 dark:text-gray-300">`;
                         Array.from(set).sort().forEach(item => {
                             listHtml += `<li class="mb-1">${item}</li>`;
                         });
@@ -267,8 +315,8 @@
                 htmlContent += createListHtml('Installations en amont', distinctInstallationsAmont);
 
                 // Affichage des résultats d'analyse récents
-                htmlContent += `<h3 class="text-lg font-medium mb-2 text-gray-700">Derniers résultats d'analyse :</h3>`;
-                htmlContent += `<div class="space-y-4 max-h-80 overflow-y-auto rounded bg-gray-50 p-2">`;
+                htmlContent += `<h3 class="text-lg font-medium mb-2 text-gray-700 dark:text-gray-300">Derniers résultats d'analyse :</h3>`;
+                htmlContent += `<div class="space-y-4 max-h-80 overflow-y-auto rounded bg-gray-50 p-2 dark:bg-gray-800 dark:text-gray-300">`;
                 rawData.slice(0, 5000).forEach(item => { // Prendre les 5000 premiers pour ne pas surcharger
                     const result = item.resultat_alphanumerique || item.resultat_numerique || 'N/A';
                     const unit = item.libelle_unite || '';
@@ -278,10 +326,10 @@
                     htmlContent += `
                         <div class="border-b border-gray-200 pb-2">
                             <p class="font-semibold">${item.libelle_parametre || 'Paramètre inconnu'} : ${result} ${unit}</p>
-                            <p class="text-sm text-gray-600">Commune : ${item.nom_commune || 'N/A'}</p>
-                            <p class="text-sm text-gray-600">Lieu de prélèvement : ${item.libelle_lieu_dit || 'N/A'}</p>
-                            <p class="text-sm text-gray-600">Date : ${date} ${time}</p>
-                            <p class="text-sm text-gray-600">Conformité : ${item.conclusion_conformite_prelevement || 'N/A'}</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Commune : ${item.nom_commune || 'N/A'}</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Lieu de prélèvement : ${item.libelle_lieu_dit || 'N/A'}</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Date : ${date} ${time}</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Conformité : ${item.conclusion_conformite_prelevement || 'N/A'}</p>
                         </div>
                     `;
                 });
@@ -292,7 +340,44 @@
             }
         });
     </script>
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const htmlElement = document.documentElement;
+        const inputCheck = document.getElementById('checkbox');
 
+        // Fonction pour appliquer le thème
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                inputCheck.checked = false; // décoché = mode sombre
+            } else {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                inputCheck.checked = true; // coché = mode clair
+            }
+        }
+
+        // Initialisation du thème au chargement de la page
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme) {
+            applyTheme(storedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            applyTheme('dark');
+        } else {
+            applyTheme('light');
+        }
+
+        // Gestion du clic sur le label
+        darkModeToggle.addEventListener('click', () => {
+            // checked = mode clair, décoché = mode sombre
+            if (inputCheck.checked) {
+                applyTheme('light');
+            } else {
+                applyTheme('dark');
+            }
+        });
+    </script>
 </body>
 
 </html>
